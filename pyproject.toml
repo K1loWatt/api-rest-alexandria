@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "alexandria"
+version = "0.1.0"
+description = "A FastAPI project with SQLAlchemy"
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.68.0"
+uvicorn = "^0.15.0"
+sqlalchemy = "^1.4.22"
+pre-commit = "^4.0.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.4"
+
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
