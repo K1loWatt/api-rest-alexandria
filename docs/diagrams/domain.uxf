@@ -1,0 +1,40 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>130</x><y>380</y><w>260</w><h>230</h></coordinates><panel_attributes>&lt;&lt;Book&gt;&gt;
+--
++id: int
++authors_ids: List[int] 
++publication_year: datetime
++award_ids: List[Prize]
+--
+WIP
+--
+Responsibilities
+-- Contains all the data related to 
+books
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>380</x><y>480</y><w>240</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=0..n
+m2=0..n
+have</panel_attributes><additional_attributes>10;20;160;20;160;10;220;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>600</x><y>380</y><w>280</w><h>230</h></coordinates><panel_attributes>&lt;&lt;Author&gt;&gt;
+--
++id: int
++first_name: str
++second_name: str
++last_name: str
++birthdate: str
+--
+WIP
+--
+Responsibilities
+-- Contains all the data related to authors</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>610</x><y>110</y><w>260</w><h>230</h></coordinates><panel_attributes>&lt;&lt;Award&gt;&gt;
+--
++id: int
+WIP
+--
+WIP
+--
+Responsibilities
+-- Contains all the data related to 
+literature awards
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>380</x><y>250</y><w>250</w><h>230</h></coordinates><panel_attributes>lt=-
+m1=0..n
+m2=0..n
+have</panel_attributes><additional_attributes>10;200;120;200;120;10;230;10</additional_attributes></element></diagram>
