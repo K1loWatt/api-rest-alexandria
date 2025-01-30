@@ -1,0 +1,7 @@
+
+
+APP_NAME=sample_app
+DB_NAME=sample_db
+DB_USER=sample_user
+DB_PASSWORD=sample_password
+DB_HOST=sample_host
