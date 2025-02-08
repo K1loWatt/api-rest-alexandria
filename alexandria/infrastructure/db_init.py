@@ -1,39 +1,83 @@
-import psycopg2
+import os
 
-connection = psycopg2.connect(
-    dbname='your_database_name',
-    user='your_user',
-    password='your_password',
-    host='localhost',
-    port='5432'
+from load_dotenv import load_dotenv
+from sqlalchemy import (Column, ForeignKey, Integer, MetaData, String, Table,
+                        create_engine)
+from sqlalchemy.orm import mapper, registry
+
+from alexandria.core.models import Author, Award, Book
+
+metadata = MetaData()
+
+authors = Table(
+    "authors",
+    metadata,
+    Column("id", Integer, primary_key=True),
+    Column("first_name", String(255), nullable=False),
+    Column("last_name", String(255), nullable=False),
+    Column("birth_date", String(255), nullable=True),
 )
 
-cursor = connection.cursor()
-
-cursor.execute('''
-CREATE TABLE IF NOT EXISTS authors (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+books = Table(
+    "books",
+    metadata,
+    Column("id", Integer, primary_key=True),
+    Column("title", String(255), nullable=False),
+    Column("publication_date", String(255), nullable=True),
 )
-''')
 
-cursor.execute('''
-CREATE TABLE IF NOT EXISTS books (
-    id SERIAL PRIMARY KEY,
-    title VARCHAR(255) NOT NULL
+
+book_author = Table(
+    "book_author",
+    metadata,
+    Column(
+        "author_id",
+        Integer,
+        ForeignKey("authors.id", ondelete="CASCADE"),
+        primary_key=True,
+    ),
+    Column(
+        "book_id", Integer, ForeignKey("books.id", ondelete="CASCADE"), primary_key=True
+    ),
 )
-''')
 
-cursor.execute('''
-CREATE TABLE IF NOT EXISTS book_author (
-    author_id INT,
-    book_id INT,
-    PRIMARY KEY (author_id, book_id),
-    FOREIGN KEY (author_id) REFERENCES authors(id) ON DELETE CASCADE,
-    FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
+awards = Table(
+    "awards",
+    metadata,
+    Column("id", Integer, primary_key=True),
+    Column("name", String(255), nullable=False),
+    Column("year", Integer, nullable=False),
+    Column("description", String(255), nullable=True),
 )
-''')
 
-connection.commit()
-cursor.close()
-connection.close()
+book_award = Table(
+    "book_award",
+    metadata,
+    Column(
+        "award_id",
+        Integer,
+        ForeignKey("awards.id", ondelete="CASCADE"),
+        primary_key=True,
+    ),
+    Column(
+        "book_id", Integer, ForeignKey("books.id", ondelete="CASCADE"), primary_key=True
+    ),
+)
+
+mapper = registry()
+
+mapper.map_imperatively(Author, authors)
+mapper.map_imperatively(Book, books)
+mapper.map_imperatively(Award, awards)
+
+load_dotenv()
+db_name = os.getenv("DB_NAME")
+db_user = os.getenv("DB_USER")
+db_password = os.getenv("DB_PASSWORD")
+db_host = os.getenv("DB_HOST")
+db_port = os.getenv("DB_PORT")
+
+engine = create_engine(
+    f"postgresql+psycopg2://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
+)
+metadata.create_all(engine)
