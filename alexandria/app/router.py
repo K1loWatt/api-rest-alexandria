@@ -1,18 +1,17 @@
-from fastapi import APIRouter, HTTPException, Depends
-from sqlalchemy.orm import Session
-from typing import List
+from fastapi import APIRouter
 
 router = APIRouter()
 
-#here it goes the ReqBookCreation model
-#here it goes the ReqBookUpdate model
-#here it goes the RespBook model
+# here it goes the ReqBookCreation model
+# here it goes the ReqBookUpdate model
+# here it goes the RespBook model
+
 
 @router.get("/books/")
 def add_book(book):
-    
     # call to services
     return {"test": "test"}
+
 
 """
 @router.get("/books/")
