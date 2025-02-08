@@ -2,8 +2,9 @@ import uvicorn
 
 from alexandria.app.app import create_app
 from alexandria.app.settings import Settings
+
+
 def run_app():
-    
     settings = Settings()
     # aqui se importan los settings
     # tambien se importa la función create_app

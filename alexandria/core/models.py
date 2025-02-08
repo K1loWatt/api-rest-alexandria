@@ -2,12 +2,18 @@ from datetime import datetime
 
 
 class Author:
-    def __init__(self, first_name: str, last_name: str, birth_date: datetime, books_ids: list[int]):
+    def __init__(
+        self,
+        first_name: str,
+        last_name: str,
+        birth_date: datetime,
+        books_ids: list[int],
+    ):
         self.first_name = first_name
         self.last_name = last_name
         self.birth_date = birth_date
         self.books_ids = books_ids if books_ids else []
-        
+
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
@@ -20,6 +26,7 @@ class Book:
 
     def __str__(self):
         return f"{self.title} - {self.publication_date} by {', '.join([str(author) for author in self.authors])}"
+
 
 class Award:
     def __init__(self, name: str, year: int, description: str):
