@@ -253,6 +253,20 @@ files = [
 ]
 
 [[package]]
+name = "load-dotenv"
+version = "0.1.0"
+description = "Automatically and implicitly load environment variables from .env file"
+optional = false
+python-versions = "*"
+files = [
+    {file = "load-dotenv-0.1.0.tar.gz", hash = "sha256:bbe5f40072d4a61eadca66de6c222df5a2d935d6d41b703be1ff75396f635145"},
+    {file = "load_dotenv-0.1.0-py3-none-any.whl", hash = "sha256:614803f720153fb8a5f97124a72aaa3930a67aa5547cbe8603d01ea7f9ac1adf"},
+]
+
+[package.dependencies]
+python-dotenv = "*"
+
+[[package]]
 name = "nodeenv"
 version = "1.9.1"
 description = "Node.js virtual environment builder"
@@ -322,6 +336,25 @@ identify = ">=1.0.0"
 nodeenv = ">=0.11.1"
 pyyaml = ">=5.1"
 virtualenv = ">=20.10.0"
+
+[[package]]
+name = "psycopg2"
+version = "2.9.10"
+description = "psycopg2 - Python-PostgreSQL Database Adapter"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "psycopg2-2.9.10-cp310-cp310-win32.whl", hash = "sha256:5df2b672140f95adb453af93a7d669d7a7bf0a56bcd26f1502329166f4a61716"},
+    {file = "psycopg2-2.9.10-cp310-cp310-win_amd64.whl", hash = "sha256:c6f7b8561225f9e711a9c47087388a97fdc948211c10a4bccbf0ba68ab7b3b5a"},
+    {file = "psycopg2-2.9.10-cp311-cp311-win32.whl", hash = "sha256:47c4f9875125344f4c2b870e41b6aad585901318068acd01de93f3677a6522c2"},
+    {file = "psycopg2-2.9.10-cp311-cp311-win_amd64.whl", hash = "sha256:0435034157049f6846e95103bd8f5a668788dd913a7c30162ca9503fdf542cb4"},
+    {file = "psycopg2-2.9.10-cp312-cp312-win32.whl", hash = "sha256:65a63d7ab0e067e2cdb3cf266de39663203d38d6a8ed97f5ca0cb315c73fe067"},
+    {file = "psycopg2-2.9.10-cp312-cp312-win_amd64.whl", hash = "sha256:4a579d6243da40a7b3182e0430493dbd55950c493d8c68f4eec0b302f6bbf20e"},
+    {file = "psycopg2-2.9.10-cp313-cp313-win_amd64.whl", hash = "sha256:91fd603a2155da8d0cfcdbf8ab24a2d54bca72795b90d2a3ed2b6da8d979dee2"},
+    {file = "psycopg2-2.9.10-cp39-cp39-win32.whl", hash = "sha256:9d5b3b94b79a844a986d029eee38998232451119ad653aea42bb9220a8c5066b"},
+    {file = "psycopg2-2.9.10-cp39-cp39-win_amd64.whl", hash = "sha256:88138c8dedcbfa96408023ea2b0c369eda40fe5d75002c0964c78f46f11fa442"},
+    {file = "psycopg2-2.9.10.tar.gz", hash = "sha256:12ec0b40b0273f95296233e8750441339298e6a572f7039da5b260e3c8b60e11"},
+]
 
 [[package]]
 name = "py"
@@ -416,6 +449,20 @@ toml = "*"
 
 [package.extras]
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xmlschema"]
+
+[[package]]
+name = "python-dotenv"
+version = "1.0.1"
+description = "Read key-value pairs from a .env file and set them as environment variables"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "python-dotenv-1.0.1.tar.gz", hash = "sha256:e324ee90a023d808f1959c46bcbc04446a10ced277783dc6ee09987c37ec10ca"},
+    {file = "python_dotenv-1.0.1-py3-none-any.whl", hash = "sha256:f7b63ef50f1b690dddf550d03497b66d609393b40b564ed0d674909a68ebf16a"},
+]
+
+[package.extras]
+cli = ["click (>=5.0)"]
 
 [[package]]
 name = "pyyaml"
@@ -634,4 +681,4 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "646af22a2d1ffe1d2c94ef935cba4dd088a53bfdb3a344a314bdeb33260518a9"
+content-hash = "14485e2925ee259615f95d3635fda9949b65cd5b1b1996e3652d26be1a841eae"
