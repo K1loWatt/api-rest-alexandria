@@ -3,7 +3,7 @@ import os
 from load_dotenv import load_dotenv
 from sqlalchemy import (Column, ForeignKey, Integer, MetaData, String, Table,
                         create_engine)
-from sqlalchemy.orm import mapper, registry
+from sqlalchemy.orm import registry
 
 from alexandria.core.models import Author, Award, Book
 
