@@ -1,8 +1,4 @@
-import os
-
-from load_dotenv import load_dotenv
-from sqlalchemy import (Column, ForeignKey, Integer, MetaData, String, Table,
-                        create_engine)
+from sqlalchemy import Column, ForeignKey, Integer, MetaData, String, Table
 from sqlalchemy.orm import registry
 
 from alexandria.core.models import Author, Award, Book
@@ -69,4 +65,3 @@ mapper = registry()
 mapper.map_imperatively(Author, authors)
 mapper.map_imperatively(Book, books)
 mapper.map_imperatively(Award, awards)
-

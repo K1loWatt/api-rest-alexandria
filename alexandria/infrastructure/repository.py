@@ -1,53 +1,51 @@
+from abc import ABC, abstractmethod
 
-import abc
-from abc import abstractmethod
-from alexandria.core.models import Book, Author
+from alexandria.core.models import Author, Book
 
-class BookRepository(abc):
-    
+
+class BookRepository(ABC):
     @abstractmethod
     def get_books(self):
         raise NotImplementedError
-    
+
     @abstractmethod
     def get_book(self, book_id: int):
         raise NotImplementedError
-    
+
     @abstractmethod
     def add_book(self, book: Book):
         raise NotImplementedError
-    
+
     @abstractmethod
     def add_authors(self, book_id: int, authors_ids: list[int]):
         raise NotImplementedError
-    
+
     @abstractmethod
     def delete_book(self, book_id: int):
         raise NotImplementedError
-    
-class AuthorRepository(abc):
-    
+
+
+class AuthorRepository(ABC):
     @abstractmethod
     def get_authors(self):
         raise NotImplementedError
-    
+
     @abstractmethod
     def get_author(self, author_id: int):
         raise NotImplementedError
-    
+
     @abstractmethod
     def add_author(self, author: Author):
         raise NotImplementedError
-    
+
     @abstractmethod
     def add_books(self, author: Author):
         raise NotImplementedError
-    
+
     @abstractmethod
     def delete_author(self, author_id: int):
         raise NotImplementedError
-    
-    
+
 
 """
 

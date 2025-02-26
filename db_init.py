@@ -1,8 +1,10 @@
+import os
+
+from dotenv import load_dotenv
 from sqlalchemy import create_engine
+
 from alexandria.app.settings import Settings
 from alexandria.infrastructure.orm import metadata
-import os
-from dotenv import load_dotenv
 
 if __name__ == "__main__":
     load_dotenv()
