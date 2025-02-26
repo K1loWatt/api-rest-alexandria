@@ -1,8 +1,4 @@
-import os
-
-from load_dotenv import load_dotenv
-from sqlalchemy import (Column, ForeignKey, Integer, MetaData, String, Table,
-                        create_engine)
+from sqlalchemy import Column, ForeignKey, Integer, MetaData, String, Table
 from sqlalchemy.orm import registry
 
 from alexandria.core.models import Author, Award, Book
@@ -69,15 +65,3 @@ mapper = registry()
 mapper.map_imperatively(Author, authors)
 mapper.map_imperatively(Book, books)
 mapper.map_imperatively(Award, awards)
-
-load_dotenv()
-db_name = os.getenv("DB_NAME")
-db_user = os.getenv("DB_USER")
-db_password = os.getenv("DB_PASSWORD")
-db_host = os.getenv("DB_HOST")
-db_port = os.getenv("DB_PORT")
-
-engine = create_engine(
-    f"postgresql+psycopg2://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
-)
-metadata.create_all(engine)
