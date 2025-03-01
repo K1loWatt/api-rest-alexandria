@@ -1,6 +1,6 @@
-
 from abc import ABC
 
+
 class Uow(ABC):
-    #TODO define class
+    # TODO define class
     pass

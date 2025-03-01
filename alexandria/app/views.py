@@ -1,7 +1,5 @@
-
-
 from alexandria.infrastructure.uow import Uow
-
+from typing import Dict, Any
 """
 
 View models need to be created in order to return the data in the format that the client expects.
@@ -50,12 +48,13 @@ This data is called projections
 
 """
 
-async def get_books(uow: Uow):
+
+async def get_books(uow: Uow) -> Any: #TODO review typing
     async with uow:
-        #TODO review this query
+        # TODO review this query
         results = await uow.session.execute(
             """
-            SELECT * 
+            SELECT *
             FROM books
             JOIN authors_books ON books.id = authors_books.book_id
             JOIN authors ON authors_books.author_id = authors.id
@@ -63,8 +62,7 @@ async def get_books(uow: Uow):
             JOIN awards ON awards_books.award_id = awards.id
             GROUP BY books.id
             """
-        )   
-    #We get all the information into dicts (not using Domain Model)
-    
-    return [dict(r) for r in results]
+        )
+    # We get all the information into dicts (not using Domain Model)
 
+    return [dict(r) for r in results]
