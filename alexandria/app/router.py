@@ -1,14 +1,30 @@
+import views
+from dependency import (UOW, ResponseAuthor, ResponseAward, ResponseBook,
+                        ResponseBooks, get_uow)
 from fastapi import APIRouter, Depends
-from pydantic import BaseModel
-from typing import List
-from dependency import UOW, get_uow
+
 router = APIRouter()
-    
-async def get_books(uow):
-    with uow:
-        books = uow.repository.list()
-    return books
+
 
 @router.get("/books")
-def get_books(uow: UOW = Depends(get_uow)):
-    return  get_books(uow)
+async def get_books(uow: UOW = Depends(get_uow)):
+    books = await views.get_books(uow)
+
+    return [
+        ResponseBooks(
+            books=[
+                ResponseBook(
+                    title=book.get("title"),
+                    authors=[
+                        ResponseAuthor(name=author.get("name"))
+                        for author in book.get("authors")
+                    ],
+                    awards=[
+                        ResponseAward(name=award.get("name"))
+                        for award in book.get("awards")
+                    ],
+                )
+                for book in books
+            ]
+        )
+    ]
