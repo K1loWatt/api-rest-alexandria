@@ -1,44 +1,30 @@
-from fastapi import APIRouter
+import views
+from dependency import (UOW, ResponseAuthor, ResponseAward, ResponseBook,
+                        ResponseBooks, get_uow)
+from fastapi import APIRouter, Depends
 
 router = APIRouter()
 
-# here it goes the ReqBookCreation model
-# here it goes the ReqBookUpdate model
-# here it goes the RespBook model
 
+@router.get("/books")
+async def get_books(uow: UOW = Depends(get_uow)):
+    books = await views.get_books(uow)
 
-@router.get("/books/")
-def add_book(book):
-    # call to services
-    return {"test": "test"}
-
-
-"""
-@router.get("/books/")
-def list_books(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
-    books = crud.get_books(db, skip=skip, limit=limit)
-    return books
-
-@router.get("/books/{book_id}")
-def get_book(book_id: int, db: Session = Depends(get_db)):
-    db_book = crud.get_book(db, book_id=book_id)
-    if db_book is None:
-        raise HTTPException(status_code=404, detail="Book not found")
-    return db_book
-
-@router.put("/books/{book_id}")
-def update_book(book_id: int, book: schemas.BookUpdate, db: Session = Depends(get_db)):
-    db_book = crud.get_book(db, book_id=book_id)
-    if db_book is None:
-        raise HTTPException(status_code=404, detail="Book not found")
-    return crud.update_book(db=db, book=book, book_id=book_id)
-
-@router.delete("/books/{book_id}", response_model=schemas.Book)
-def delete_book(book_id: int, db: Session = Depends(get_db)):
-    db_book = crud.get_book(db, book_id=book_id)
-    if db_book is None:
-        raise HTTPException(status_code=404, detail="Book not found")
-    return crud.delete_book(db=db, book_id=book_id)
-
-
-"""
+    return [
+        ResponseBooks(
+            books=[
+                ResponseBook(
+                    title=book.get("title"),
+                    authors=[
+                        ResponseAuthor(name=author.get("name"))
+                        for author in book.get("authors")
+                    ],
+                    awards=[
+                        ResponseAward(name=award.get("name"))
+                        for award in book.get("awards")
+                    ],
+                )
+                for book in books
+            ]
+        )
+    ]
